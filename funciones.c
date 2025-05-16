@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <string.h>
-void producto(char productos[][30], int demanda[5], int tiempo[5], int recursos, int recursos2, int recursos3, int recursos4)
+int producto(char productos[][30], int demanda[5], int tiempo[5], int *recursos, int *recursos2, int *recursos3, int *recursos4)
 {
     int len, cont;
     for (int i = 0; i < 5; i++)
     {
-        printf("ingrese el nombre del producto numero %d", i + 1);
+        printf("ingrese el nombre del producto numero %d\n", i + 1);
         fflush(stdin);
         fgets(productos[i], 30, stdin);
         int len = strlen(productos[i]) - 1;
@@ -16,18 +16,20 @@ void producto(char productos[][30], int demanda[5], int tiempo[5], int recursos,
         scanf("%d", &tiempo[i]);
     }
     printf(" ingrese la cantidad de chips disponibles en el inventario\n");
-    scanf("%d", &recursos);
+    scanf("%d", recursos);
+    fflush(stdin);
     printf(" ingrese la cantidad de pantallas  disponibles en el inventario\n");
-    scanf("%d", &recursos2);
+    scanf("%d", recursos2);
     printf(" ingrese la cantidad de  microfonos  disponibles en el inventario\n");
-    scanf("%d", &recursos3);
+    scanf("%d", recursos3);
     printf(" ingrese la cantidad de altavoces disponibles en el inventario\n");
-    scanf("%d", &recursos4);
+    scanf("%d", recursos4);
     printf("se necesitan 4 chips, 1 pantalla,2 microfonos y 3 altavoces para el producto 1 con el nombre de %s\n", productos[0]);
     printf("se necesitan 3 chips, 2 pantalla,1 microfonos y 2 altavoces para el producto 2 con el nombre de %s\n", productos[1]);
     printf("se necesitan 5 chips, 4 pantalla,3 microfonos y 6 altavoces para el producto 3 con el nombre de %s\n", productos[2]);
     printf("se necesitan 7 chips, 3 pantalla,2 microfonos y 5 altavoces para el producto 4 con el nombre de %s\n", productos[3]);
     printf("se necesitan 2 chips, 5 pantalla,3 microfonos y 5 altavoces para el producto 5 con el nombre de %s\n", productos[4]);
+    return recursos, recursos2, recursos3, recursos4;
 }
 int tiempot(int demanda[5], int tiempo[5], int op)
 {
@@ -56,52 +58,126 @@ int tiempot(int demanda[5], int tiempo[5], int op)
     }
     return tiempot;
 }
-void caso(int tiempot, int tiempo[5], int op, int t, int s)
+void caso(int tiempot, int t, int *s)
 {
-    s = 0;
-    t = t - tiempot;
+    *s = 0;
+
     if (t > tiempot)
     {
         printf("el si se puede cumplir la demanda en el tiempo disponible\n");
+        *s = 1;
     }
     else if (t < tiempot)
     {
         printf("no se puede cumplir la demanda en el tiempo disponible\n");
     }
 }
-void comprobar(int recurso, int recursos2, int recursos3t, int recursos4t)
+void comprobar(int *recurso, int *recursos2, int *recursos3t, int *recursos4t, int *r1, int *r2, int *r3, int *r4, int *n)
 {
+    *n = 0;
+
+    if (*recurso >= *r1)
+    {
+        *n = *n + 1;
+    }
+    if (*recursos2 >= *r2)
+    {
+        *n = *n + 1;
+    }
+    if (*recursos3t >= *r3)
+    {
+        *n = *n + 1;
+    }
+    if (*recursos4t >= *r4)
+    {
+        *n = *n + 1;
+    }
 }
-int recu(int *recurso, int *recursos2, int *recursos3t, int *recursos4t, int op, int demanda[5])
+void recu(int op, int demanda[5], int *recurso, int *recursos2, int *recursos3t, int *recursos4t)
 {
+    printf("Seleccione el producto (1-5): ");
+    scanf("%d", &op);
+    *recurso = 0;
+    *recursos2 = 0;
+    *recursos3t = 0;
+    *recursos4t = 0;
     switch (op)
     {
     case 1:
-        recurso = 4 * demanda[0];
-        recursos2 = 1 * demanda[0];
-        recursos3t = 2 * demanda[0];
-        recursos4t = 3 * demanda[0];
+        *recurso = 4 * demanda[0];
+        *recursos2 = 1 * demanda[0];
+        *recursos3t = 2 * demanda[0];
+        *recursos4t = 3 * demanda[0];
         break;
     case 2:
-        recurso = 3 * demanda[1];
-        recursos2 = 2 * demanda[1];
-        recursos3t = 1 * demanda[1];
-        recursos4t = 2 * demanda[1];
+        *recurso = 3 * demanda[1];
+        *recursos2 = 2 * demanda[1];
+        *recursos3t = 1 * demanda[1];
+        *recursos4t = 2 * demanda[1];
         break;
     case 3:
-        recurso = 5 * demanda[2];
-        recursos2 = 4 * demanda[2];
-        recursos3t = 3 * demanda[2];
-        recursos4t = 6 * demanda[2];
+        *recurso = 5 * demanda[2];
+        *recursos2 = 4 * demanda[2];
+        *recursos3t = 3 * demanda[2];
+        *recursos4t = 6 * demanda[2];
         break;
     case 4:
-        recurso = 4 * demanda[3];
-        recursos2 = 1 * demanda[3];
-        recursos3t = 2 * demanda[3];
-        recursos4t = 3 * demanda[3];
+        *recurso = 4 * demanda[3];
+        *recursos2 = 1 * demanda[3];
+        *recursos3t = 2 * demanda[3];
+        *recursos4t = 3 * demanda[3];
         break;
     default:
         break;
     }
-    return recurso,recursos2,recursos3t,recursos4t;
+}
+int menu(int opc)
+{
+    printf("selecciones una opcion\n");
+    printf("1.ver si se puede cumplir con el trabajo\n");
+    printf("2.editar informacion de producto\n");
+    printf("3.eliminar producto del catalogo\n");
+    printf("4.ver stock actual y tiempo disponible restante\n");
+}
+int resta(int *recurso, int *recursos2, int *recursos3t, int *recursos4t, int *r1, int *r2, int *r3, int *r4)
+{
+    *recurso = *recurso - *r1;
+    *recursos2 = *recursos2 - *r2;
+    *recursos3t = *recursos3t - *r3;
+    *recursos4t = *recursos4t - *r4;
+}
+void restat(int tiempot, int *t)
+{
+    *t = *t - tiempot;
+}
+void cambio(char productos[][30], int demanda[], int tiempo[])
+{
+    char buscar[30];
+    int len, encontrado = 0;
+    fflush(stdin);
+
+    printf("Ingrese el nombre del producto que desea editar: ");
+    fgets(buscar, 30, stdin);
+    len = strlen(buscar);
+    if (buscar[len - 1] == '\n')
+        buscar[len - 1] = '\0';
+
+    for (int i = 0; i < 5; i++)
+    {
+        if (strcmp(productos[i], buscar) == 0)
+        {
+            printf("Producto encontrado: %s\n", productos[i]);
+            printf("Ingrese la nueva demanda del producto: ");
+            scanf("%d", &demanda[i]);
+            printf("Ingrese el nuevo tiempo de produccion del producto: ");
+            scanf("%d", &tiempo[i]);
+            encontrado = 1;
+            break;
+        }
+    }
+
+    if (!encontrado)
+    {
+        printf("Producto no encontrado en el catálogo.\n");
+    }
 }
