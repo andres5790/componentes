@@ -12,18 +12,50 @@ int producto(char productos[][30], int demanda[5], int tiempo[5], int *recursos,
         productos[i][len] = '\0';
         printf("ingrese la demanda del producto\n");
         scanf("%d", &demanda[i]);
+        while (demanda[i] <= 0)
+        {
+            printf("Error: la demanda debe ser un número entero positivo\n");
+            printf("Ingrese la demanda nuevamente: ");
+            scanf("%d", &demanda[i]);
+        }
         printf("ingrese el tiempo que se demora en hacer el producto\n");
         scanf("%d", &tiempo[i]);
+        while (tiempo[i] <= 0)
+        {
+            printf("Error: el tiempo debe ser un número entero positivo\n");
+            printf("Ingrese el tiempo nuevamente: ");
+            scanf("%d", &tiempo[i]);
+        }
     }
     printf(" ingrese la cantidad de chips disponibles en el inventario\n");
     scanf("%d", recursos);
+    while (recursos <= 0)
+    {
+        printf("Ingrese los recursos nuevamente: ");
+        scanf("%d", &recursos);
+    }
     fflush(stdin);
     printf(" ingrese la cantidad de pantallas  disponibles en el inventario\n");
     scanf("%d", recursos2);
+    while (recursos2 <= 0)
+    {
+        printf("Ingrese los recursos nuevamente: ");
+        scanf("%d", &recursos2);
+    }
     printf(" ingrese la cantidad de  microfonos  disponibles en el inventario\n");
     scanf("%d", recursos3);
+    while (recursos3 <= 0)
+    {
+        printf("Ingrese los recursos nuevamente: ");
+        scanf("%d", &recursos3);
+    }
     printf(" ingrese la cantidad de altavoces disponibles en el inventario\n");
     scanf("%d", recursos4);
+    while (recursos4 <= 0)
+    {
+        printf("Ingrese los recursos nuevamente: ");
+        scanf("%d", &recursos4);
+    }
     printf("se necesitan 4 chips, 1 pantalla,2 microfonos y 3 altavoces para el producto 1 con el nombre de %s\n", productos[0]);
     printf("se necesitan 3 chips, 2 pantalla,1 microfonos y 2 altavoces para el producto 2 con el nombre de %s\n", productos[1]);
     printf("se necesitan 5 chips, 4 pantalla,3 microfonos y 6 altavoces para el producto 3 con el nombre de %s\n", productos[2]);
@@ -64,7 +96,7 @@ void caso(int tiempot, int t, int *s)
 
     if (t > tiempot)
     {
-        printf("el si se puede cumplir la demanda en el tiempo disponible\n");
+        printf(" si se puede cumplir la demanda en el tiempo disponible\n");
         *s = 1;
     }
     else if (t < tiempot)
@@ -91,6 +123,10 @@ void comprobar(int *recurso, int *recursos2, int *recursos3t, int *recursos4t, i
     if (*recursos4t >= *r4)
     {
         *n = *n + 1;
+    }
+    if (n < 4)
+    {
+        printf("no se puede cumplir la demanda ya que no hay suficientes recursos\n");
     }
 }
 void recu(int op, int demanda[5], int *recurso, int *recursos2, int *recursos3t, int *recursos4t)
@@ -122,10 +158,16 @@ void recu(int op, int demanda[5], int *recurso, int *recursos2, int *recursos3t,
         *recursos4t = 6 * demanda[2];
         break;
     case 4:
-        *recurso = 4 * demanda[3];
-        *recursos2 = 1 * demanda[3];
+        *recurso = 7 * demanda[3];
+        *recursos2 = 3 * demanda[3];
         *recursos3t = 2 * demanda[3];
-        *recursos4t = 3 * demanda[3];
+        *recursos4t = 5 * demanda[3];
+        break;
+    case 5:
+        *recurso = 2 * demanda[4];
+        *recursos2 = 5 * demanda[4];
+        *recursos3t = 3 * demanda[4];
+        *recursos4t = 5 * demanda[4];
         break;
     default:
         break;
@@ -138,8 +180,10 @@ int menu(int opc)
     printf("2.editar informacion de producto\n");
     printf("3.eliminar producto del catalogo\n");
     printf("4.ver stock actual y tiempo disponible restante\n");
+    printf("5.agregar un nuevo stock\n");
+    printf("6.salir\n");
 }
-int resta(int *recurso, int *recursos2, int *recursos3t, int *recursos4t, int *r1, int *r2, int *r3, int *r4)
+void resta(int *recurso, int *recursos2, int *recursos3t, int *recursos4t, int *r1, int *r2, int *r3, int *r4)
 {
     *recurso = *recurso - *r1;
     *recursos2 = *recursos2 - *r2;
@@ -167,10 +211,32 @@ void cambio(char productos[][30], int demanda[], int tiempo[])
         if (strcmp(productos[i], buscar) == 0)
         {
             printf("Producto encontrado: %s\n", productos[i]);
-            printf("Ingrese la nueva demanda del producto: ");
+            printf("Ingrese el nuevo nombre del producto: ");
+            fflush(stdin);
+            fgets(productos[i], 30, stdin);
+            len = strlen(productos[i]);
+            if (productos[i][len - 1] == '\n')
+                productos[i][len - 1] = '\0';
+            printf("ingrese la nueva demanda\n");
             scanf("%d", &demanda[i]);
+            while (demanda[i] <= 0)
+            {
+                printf("Error: la demanda debe ser un número entero positivo\n");
+                printf("Ingrese la demanda nuevamente: ");
+                scanf("%d", &demanda[i]);
+            }
             printf("Ingrese el nuevo tiempo de produccion del producto: ");
             scanf("%d", &tiempo[i]);
+            while (tiempo[i] <= 0)
+            {
+                printf("Error: el tiempo debe ser un número entero positivo\n");
+                printf("Ingrese el tiempo nuevamente: ");
+                scanf("%d", &tiempo[i]);
+            }
+            printf("Nombre actualizado: %s\n", productos[i]);
+            printf("Demanda actualizada: %d\n", demanda[i]);
+            printf("Tiempo actualizado: %d\n", tiempo[i]);
+
             encontrado = 1;
             break;
         }
@@ -179,5 +245,66 @@ void cambio(char productos[][30], int demanda[], int tiempo[])
     if (!encontrado)
     {
         printf("Producto no encontrado en el catálogo.\n");
+    }
+}
+void agregar(int op, int cantidad, int *recursos, int *recursos2, int *recursos3, int *recursos4)
+{
+    printf("seleccione que recurso desea agregar\n");
+    scanf("%d", &op);
+    printf("seleccione la cantidad a agregar\n");
+    scanf("%d", &cantidad);
+    while (cantidad <= 0)
+    {
+        printf("Error: la cantidad debe ser un número entero positivo\n");
+        printf("Ingrese  la cantidad nuevamente: ");
+        scanf("%d", &cantidad);
+    }
+    switch (op)
+    {
+    case 1:
+        *recursos = *recursos + cantidad;
+        break;
+    case 2:
+        *recursos2 = *recursos2 + cantidad;
+        break;
+    case 3:
+        *recursos3 = *recursos3 + cantidad;
+        break;
+    case 4:
+        *recursos4 = *recursos4 + cantidad;
+    default:
+        break;
+    }
+}
+void eliminar(char productos[][30], int demanda[5], int tiempo[5])
+{
+    char buscar[30];
+    int len, encontrado = 0, i;
+    fflush(stdin);
+
+    printf("Ingrese el nombre del producto que desea eliminar: ");
+    fgets(buscar, 30, stdin);
+    len = strlen(buscar);
+    if (buscar[len - 1] == '\n')
+        buscar[len - 1] = '\0';
+
+    for (i = 0; i < 5; i++)
+    {
+        if (strcmp(productos[i], buscar) == 0)
+        {
+            encontrado = 1;
+            break;
+        }
+    }
+    if (encontrado)
+    {
+        strcpy(productos[i], "");
+        demanda[i] = 0;
+        tiempo[i] = 0;
+        printf("Producto eliminado con éxito\n");
+    }
+    else
+    {
+        printf("Producto no encontrado\n");
     }
 }
