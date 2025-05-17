@@ -29,39 +29,38 @@ int producto(char productos[][30], int demanda[5], int tiempo[5], int *recursos,
     }
     printf(" ingrese la cantidad de chips disponibles en el inventario\n");
     scanf("%d", recursos);
-    while (recursos <= 0)
+    while (*recursos <= 0)
     {
         printf("Ingrese los recursos nuevamente: ");
-        scanf("%d", &recursos);
+        scanf("%d", recursos);
     }
-    fflush(stdin);
     printf(" ingrese la cantidad de pantallas  disponibles en el inventario\n");
     scanf("%d", recursos2);
-    while (recursos2 <= 0)
+    while (*recursos2 <= 0)
     {
         printf("Ingrese los recursos nuevamente: ");
-        scanf("%d", &recursos2);
+        scanf("%d", recursos2);
     }
     printf(" ingrese la cantidad de  microfonos  disponibles en el inventario\n");
     scanf("%d", recursos3);
-    while (recursos3 <= 0)
+    while (*recursos3 <= 0)
     {
         printf("Ingrese los recursos nuevamente: ");
-        scanf("%d", &recursos3);
+        scanf("%d", recursos3);
     }
     printf(" ingrese la cantidad de altavoces disponibles en el inventario\n");
     scanf("%d", recursos4);
-    while (recursos4 <= 0)
+    while (*recursos4 <= 0)
     {
         printf("Ingrese los recursos nuevamente: ");
-        scanf("%d", &recursos4);
+        scanf("%d", recursos4);
     }
     printf("se necesitan 4 chips, 1 pantalla,2 microfonos y 3 altavoces para el producto 1 con el nombre de %s\n", productos[0]);
     printf("se necesitan 3 chips, 2 pantalla,1 microfonos y 2 altavoces para el producto 2 con el nombre de %s\n", productos[1]);
     printf("se necesitan 5 chips, 4 pantalla,3 microfonos y 6 altavoces para el producto 3 con el nombre de %s\n", productos[2]);
     printf("se necesitan 7 chips, 3 pantalla,2 microfonos y 5 altavoces para el producto 4 con el nombre de %s\n", productos[3]);
     printf("se necesitan 2 chips, 5 pantalla,3 microfonos y 5 altavoces para el producto 5 con el nombre de %s\n", productos[4]);
-    return recursos, recursos2, recursos3, recursos4;
+    
 }
 int tiempot(int demanda[5], int tiempo[5], int op)
 {
@@ -272,6 +271,7 @@ void agregar(int op, int cantidad, int *recursos, int *recursos2, int *recursos3
         break;
     case 4:
         *recursos4 = *recursos4 + cantidad;
+        break;
     default:
         break;
     }
