@@ -1,5 +1,5 @@
-int producto(char productos[][30], int demanda[5], int tiempo[5], int *recursos, int *recursos2, int *recursos3, int *recursos4);
-int tiempot(int demanda[5], int tiempo[5], int op);
+int producto(char productos[][30], int tiempo[5]);
+int tiempot(int demanda, int tiempo[5], int op);
 void caso(int tiempot,int t,int s);
 void recu(int op, int demanda[5],int *recurso, int *recursos2, int *recursos3t, int *recursos4t );
 int menu(int opc);
@@ -9,3 +9,5 @@ void comprobar(int *recurso, int *recursos2, int *recursos3t, int *recursos4t,in
 void cambio(char productos[][30], int demanda[], int tiempo[]);
 void agregar(int op,int cantidad,int *recursos, int *recursos2, int *recursos3, int *recursos4 );
 void eliminar(char productos[][30], int demanda[5], int tiempo[5]);
+int menu2(int opc);
+int ingresor(int *recursos, int *recursos2, int *recursos3, int *recursos4,char productos[][30]);
