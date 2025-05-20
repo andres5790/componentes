@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-int producto(char productos[][30], int demanda[5], int tiempo[5], int *recursos, int *recursos2, int *recursos3, int *recursos4)
+int producto(char productos[][30],  int tiempo[5])
 {
     int len, cont;
     for (int i = 0; i < 5; i++)
@@ -10,14 +10,6 @@ int producto(char productos[][30], int demanda[5], int tiempo[5], int *recursos,
         fgets(productos[i], 30, stdin);
         int len = strlen(productos[i]) - 1;
         productos[i][len] = '\0';
-        printf("ingrese la demanda del producto\n");
-        scanf("%d", &demanda[i]);
-        while (demanda[i] <= 0)
-        {
-            printf("Error: la demanda debe ser un número entero positivo\n");
-            printf("Ingrese la demanda nuevamente: ");
-            scanf("%d", &demanda[i]);
-        }
         printf("ingrese el tiempo que se demora en hacer el producto\n");
         scanf("%d", &tiempo[i]);
         while (tiempo[i] <= 0)
@@ -27,42 +19,9 @@ int producto(char productos[][30], int demanda[5], int tiempo[5], int *recursos,
             scanf("%d", &tiempo[i]);
         }
     }
-    printf(" ingrese la cantidad de chips disponibles en el inventario\n");
-    scanf("%d", recursos);
-    while (*recursos <= 0)
-    {
-        printf("Ingrese los recursos nuevamente: ");
-        scanf("%d", recursos);
-    }
-    printf(" ingrese la cantidad de pantallas  disponibles en el inventario\n");
-    scanf("%d", recursos2);
-    while (*recursos2 <= 0)
-    {
-        printf("Ingrese los recursos nuevamente: ");
-        scanf("%d", recursos2);
-    }
-    printf(" ingrese la cantidad de  microfonos  disponibles en el inventario\n");
-    scanf("%d", recursos3);
-    while (*recursos3 <= 0)
-    {
-        printf("Ingrese los recursos nuevamente: ");
-        scanf("%d", recursos3);
-    }
-    printf(" ingrese la cantidad de altavoces disponibles en el inventario\n");
-    scanf("%d", recursos4);
-    while (*recursos4 <= 0)
-    {
-        printf("Ingrese los recursos nuevamente: ");
-        scanf("%d", recursos4);
-    }
-    printf("se necesitan 4 chips, 1 pantalla,2 microfonos y 3 altavoces para el producto 1 con el nombre de %s\n", productos[0]);
-    printf("se necesitan 3 chips, 2 pantalla,1 microfonos y 2 altavoces para el producto 2 con el nombre de %s\n", productos[1]);
-    printf("se necesitan 5 chips, 4 pantalla,3 microfonos y 6 altavoces para el producto 3 con el nombre de %s\n", productos[2]);
-    printf("se necesitan 7 chips, 3 pantalla,2 microfonos y 5 altavoces para el producto 4 con el nombre de %s\n", productos[3]);
-    printf("se necesitan 2 chips, 5 pantalla,3 microfonos y 5 altavoces para el producto 5 con el nombre de %s\n", productos[4]);
     
 }
-int tiempot(int demanda[5], int tiempo[5], int op)
+int tiempot(int demanda, int tiempo[5], int op)
 {
     int tiempot;
     printf("seleccione el numero del producto para calcular el tiempo requerido\n");
@@ -175,6 +134,7 @@ void recu(int op, int demanda[5], int *recurso, int *recursos2, int *recursos3t,
 int menu(int opc)
 {
     printf("selecciones una opcion\n");
+    printf("1.ingresar  nombre producto,tiempo\n");
     printf("1.ver si se puede cumplir con el trabajo\n");
     printf("2.editar informacion de producto\n");
     printf("3.eliminar producto del catalogo\n");
@@ -308,3 +268,48 @@ void eliminar(char productos[][30], int demanda[5], int tiempo[5])
         printf("Producto no encontrado\n");
     }
 }
+int menu2(int opc)
+{
+    printf("selecciones una opcion\n");
+    printf("1.ingresar nombres, tiempoque se demora en el producto\n");
+    printf("2.ingresar recursos disponibles en la fabrica\n");
+    printf("3.Calcular un pedido\n");
+}
+int ingresor(int *recursos, int *recursos2, int *recursos3, int *recursos4,char productos[][30]){
+    printf(" ingrese la cantidad de chips disponibles en el inventario\n");
+    scanf("%d", recursos);
+    while (*recursos <= 0)
+    {
+        printf("Ingrese los recursos nuevamente: ");
+        scanf("%d", recursos);
+    }
+    printf(" ingrese la cantidad de pantallas  disponibles en el inventario\n");
+    scanf("%d", recursos2);
+    while (*recursos2 <= 0)
+    {
+        printf("Ingrese los recursos nuevamente: ");
+        scanf("%d", recursos2);
+    }
+    printf(" ingrese la cantidad de  microfonos  disponibles en el inventario\n");
+    scanf("%d", recursos3);
+    while (*recursos3 <= 0)
+    {
+        printf("Ingrese los recursos nuevamente: ");
+        scanf("%d", recursos3);
+    }
+    printf(" ingrese la cantidad de altavoces disponibles en el inventario\n");
+    scanf("%d", recursos4);
+    while (*recursos4 <= 0)
+    {
+        printf("Ingrese los recursos nuevamente: ");
+        scanf("%d", recursos4);
+    }
+    printf("se necesitan 4 chips, 1 pantalla,2 microfonos y 3 altavoces para el producto 1 con el nombre de %s\n", productos[0]);
+    printf("se necesitan 3 chips, 2 pantalla,1 microfonos y 2 altavoces para el producto 2 con el nombre de %s\n", productos[1]);
+    printf("se necesitan 5 chips, 4 pantalla,3 microfonos y 6 altavoces para el producto 3 con el nombre de %s\n", productos[2]);
+    printf("se necesitan 7 chips, 3 pantalla,2 microfonos y 5 altavoces para el producto 4 con el nombre de %s\n", productos[3]);
+    printf("se necesitan 2 chips, 5 pantalla,3 microfonos y 5 altavoces para el producto 5 con el nombre de %s\n", productos[4]);
+    
+
+}
+    
