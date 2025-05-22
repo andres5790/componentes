@@ -10,7 +10,7 @@
         fgets(productos[i], 30, stdin);
         int len = strlen(productos[i]) - 1;
         productos[i][len] = '\0';
-        printf("ingrese el tiempo en horas que se demora en hacer el producto\n");
+        printf("ingrese el tiempo que se demora en hacer el producto\n");
         scanf("%d", &tiempo[i]);
         while (tiempo[i] <= 0)
         {
@@ -23,7 +23,7 @@
 int tiempot(int demanda[5], int tiempo[5], int op)
 {
     int tiempot;
-    printf("seleccione el numero del producto para calcular el tiempo requerido (1-5)\n");
+    printf("seleccione el numero del producto para calcular el tiempo requerido\n");
     scanf("%d", &op);
     switch (op)
     {
@@ -135,7 +135,7 @@ void menu(int opc)
     printf("selecciones una opcion\n");
     printf("1.ver si se puede cumplir con el trabajo\n");
     printf("2.editar informacion de producto\n");
-    printf("3.ver stock  restante\n");
+    printf("3.ver stock actual y tiempo disponible restante\n");
     printf("4.agregar un nuevo stock\n");
     printf("5.salir\n");
 }
