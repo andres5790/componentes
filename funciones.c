@@ -10,7 +10,7 @@
         fgets(productos[i], 30, stdin);
         int len = strlen(productos[i]) - 1;
         productos[i][len] = '\0';
-        printf("ingrese el tiempo que se demora en hacer el producto\n");
+        printf("ingrese el tiempo en horas que se demora en hacer el producto\n");
         scanf("%d", &tiempo[i]);
         while (tiempo[i] <= 0)
         {
