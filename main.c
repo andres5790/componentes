@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
                             cambio(productos, demandas, tiempo);
 
                             t = tiempot(demandas, tiempo, op);
-                            printf("el tiempo necesario para cumplir con la demanda es de %d\n", t);
+                            printf("el tiempo necesario para cumplir con la demanda en horas es de %d\n", t);
                             recu(op, demandas, &tr1, &tr2, &tr3, &tr4);
                             printf("el total de chips que necesita es de %d\n", tr1);
                             printf("el total de pantallas que necesita es de %d\n", tr2);
