@@ -23,7 +23,7 @@
 int tiempot(int demanda[5], int tiempo[5], int op)
 {
     int tiempot;
-    printf("seleccione el numero del producto para calcular el tiempo requerido\n");
+    printf("seleccione el numero del producto para calcular el tiempo requerido (1-5)\n");
     scanf("%d", &op);
     switch (op)
     {
@@ -135,7 +135,7 @@ void menu(int opc)
     printf("selecciones una opcion\n");
     printf("1.ver si se puede cumplir con el trabajo\n");
     printf("2.editar informacion de producto\n");
-    printf("3.ver stock actual y tiempo disponible restante\n");
+    printf("3.ver stock  restante\n");
     printf("4.agregar un nuevo stock\n");
     printf("5.salir\n");
 }
