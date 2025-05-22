@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-int producto(char productos[][30],  int tiempo[5])
+int producto(char productos[][30], int tiempo[5])
 {
     int len, cont;
     for (int i = 0; i < 5; i++)
@@ -19,9 +19,8 @@ int producto(char productos[][30],  int tiempo[5])
             scanf("%d", &tiempo[i]);
         }
     }
-    
 }
-int tiempot(int demanda, int tiempo[5], int op)
+int tiempot(int demanda[5], int tiempo[5], int op)
 {
     int tiempot;
     printf("seleccione el numero del producto para calcular el tiempo requerido\n");
@@ -149,10 +148,7 @@ void resta(int *recurso, int *recursos2, int *recursos3t, int *recursos4t, int *
     *recursos3t = *recursos3t - *r3;
     *recursos4t = *recursos4t - *r4;
 }
-void restat(int tiempot, int *t)
-{
-    *t = *t - tiempot;
-}
+
 void cambio(char productos[][30], int demanda[], int tiempo[])
 {
     char buscar[30];
@@ -274,8 +270,10 @@ int menu2(int opc)
     printf("1.ingresar nombres, tiempoque se demora en el producto\n");
     printf("2.ingresar recursos disponibles en la fabrica\n");
     printf("3.Calcular un pedido\n");
+    printf("4.salir\n");
 }
-int ingresor(int *recursos, int *recursos2, int *recursos3, int *recursos4,char productos[][30]){
+int ingresor(int *recursos, int *recursos2, int *recursos3, int *recursos4, char productos[][30])
+{
     printf(" ingrese la cantidad de chips disponibles en el inventario\n");
     scanf("%d", recursos);
     while (*recursos <= 0)
@@ -309,7 +307,41 @@ int ingresor(int *recursos, int *recursos2, int *recursos3, int *recursos4,char 
     printf("se necesitan 5 chips, 4 pantalla,3 microfonos y 6 altavoces para el producto 3 con el nombre de %s\n", productos[2]);
     printf("se necesitan 7 chips, 3 pantalla,2 microfonos y 5 altavoces para el producto 4 con el nombre de %s\n", productos[3]);
     printf("se necesitan 2 chips, 5 pantalla,3 microfonos y 5 altavoces para el producto 5 con el nombre de %s\n", productos[4]);
-    
-
 }
+
+int demanda(int demanda[5])
+{
+    for (int i = 0; i < 5; i++)
+    {
+        printf("ingrese la demanda del producto %d\n", i);
+        scanf("%d", &demanda[i]);
+        while (demanda[i] <= 0)
+        {
+            printf("Error: el tiempo debe ser un número entero positivo\n");
+            printf("Ingrese el tiempo nuevamente: ");
+            scanf("%d", &demanda[i]);
+        }
+    }
+}
+int tiempocliente(int tiempoc, int *t, int *s)
+{
+    *s=0;
+    printf("ingrese el tiempo limite a entregar el pedido\n");
+    scanf("%d", &tiempoc);
+    while (tiempoc <= 0)
+    {
+        printf("Error: el tiempo debe ser un número entero positivo\n");
+        printf("Ingrese el tiempo nuevamente: ");
+        scanf("%d", &tiempoc);
+    }
+    if (tiempoc>=*t)
+    {
+        *s=1;
+    }else if (tiempoc<*t)
+    {
+        *s=0;
+        printf("el no se puede realizar el pedido en el tiempo establecido\n");
+    }
     
+    
+}
