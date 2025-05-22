@@ -88,7 +88,7 @@ void comprobar(int *recurso, int *recursos2, int *recursos3t, int *recursos4t, i
 }
 void recu(int op, int demanda[5], int *recurso, int *recursos2, int *recursos3t, int *recursos4t)
 {
-    printf("Seleccione el producto (1-5): ");
+    printf("Seleccione el producto  a calcular la cantidad de componentes necesarios (1-5): ");
     scanf("%d", &op);
     *recurso = 0;
     *recursos2 = 0;
@@ -133,7 +133,6 @@ void recu(int op, int demanda[5], int *recurso, int *recursos2, int *recursos3t,
 int menu(int opc)
 {
     printf("selecciones una opcion\n");
-    printf("1.ingresar  nombre producto,tiempo\n");
     printf("1.ver si se puede cumplir con el trabajo\n");
     printf("2.editar informacion de producto\n");
     printf("3.eliminar producto del catalogo\n");
@@ -267,7 +266,7 @@ void eliminar(char productos[][30], int demanda[5], int tiempo[5])
 int menu2(int opc)
 {
     printf("selecciones una opcion\n");
-    printf("1.ingresar nombres, tiempoque se demora en el producto\n");
+    printf("1.ingresar nombres, tiempo que se demora en fabricar  el producto\n");
     printf("2.ingresar recursos disponibles en la fabrica\n");
     printf("3.Calcular un pedido\n");
     printf("4.salir\n");
@@ -313,7 +312,7 @@ int demanda(int demanda[5])
 {
     for (int i = 0; i < 5; i++)
     {
-        printf("ingrese la demanda del producto %d\n", i);
+        printf("ingrese la demanda del producto %d\n", i+1);
         scanf("%d", &demanda[i]);
         while (demanda[i] <= 0)
         {
@@ -323,8 +322,9 @@ int demanda(int demanda[5])
         }
     }
 }
-int tiempocliente(int tiempoc, int *t, int *s)
-{
+int tiempocliente( int *t, int *s)
+{  
+    int tiempoc;
     *s=0;
     printf("ingrese el tiempo limite a entregar el pedido\n");
     scanf("%d", &tiempoc);
