@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-int producto(char productos[][30], int tiempo[5])
+ void producto(char productos[][30], int tiempo[5])
 {
     int len, cont;
     for (int i = 0; i < 5; i++)
@@ -130,15 +130,14 @@ void recu(int op, int demanda[5], int *recurso, int *recursos2, int *recursos3t,
         break;
     }
 }
-int menu(int opc)
+void menu(int opc)
 {
     printf("selecciones una opcion\n");
     printf("1.ver si se puede cumplir con el trabajo\n");
     printf("2.editar informacion de producto\n");
-    printf("3.eliminar producto del catalogo\n");
-    printf("4.ver stock actual y tiempo disponible restante\n");
-    printf("5.agregar un nuevo stock\n");
-    printf("6.salir\n");
+    printf("3.ver stock actual y tiempo disponible restante\n");
+    printf("4.agregar un nuevo stock\n");
+    printf("5.salir\n");
 }
 void resta(int *recurso, int *recursos2, int *recursos3t, int *recursos4t, int *r1, int *r2, int *r3, int *r4)
 {
@@ -263,15 +262,16 @@ void eliminar(char productos[][30], int demanda[5], int tiempo[5])
         printf("Producto no encontrado\n");
     }
 }
-int menu2(int opc)
+void menu2(int opc)
 {
     printf("selecciones una opcion\n");
     printf("1.ingresar nombres, tiempo que se demora en fabricar  el producto\n");
     printf("2.ingresar recursos disponibles en la fabrica\n");
     printf("3.Calcular un pedido\n");
-    printf("4.salir\n");
+    printf("4.eliminar producto del catalogo\n");
+    printf("5.salir\n");
 }
-int ingresor(int *recursos, int *recursos2, int *recursos3, int *recursos4, char productos[][30])
+void ingresor(int *recursos, int *recursos2, int *recursos3, int *recursos4, char productos[][30])
 {
     printf(" ingrese la cantidad de chips disponibles en el inventario\n");
     scanf("%d", recursos);
@@ -308,7 +308,7 @@ int ingresor(int *recursos, int *recursos2, int *recursos3, int *recursos4, char
     printf("se necesitan 2 chips, 5 pantalla,3 microfonos y 5 altavoces para el producto 5 con el nombre de %s\n", productos[4]);
 }
 
-int demanda(int demanda[5])
+void demanda(int demanda[5])
 {
     for (int i = 0; i < 5; i++)
     {
@@ -322,7 +322,7 @@ int demanda(int demanda[5])
         }
     }
 }
-int tiempocliente( int *t, int *s)
+void tiempocliente( int *t, int *s)
 {  
     int tiempoc;
     *s=0;
