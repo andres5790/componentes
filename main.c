@@ -4,7 +4,8 @@
 int main(int argc, char *argv[])
 {
     char productos[5][30];
-    int demandas[5], tiempo[5], recursos, recursos2, recursos3, recursos4, tiempoc, op, tr1, tr2, tr3, tr4, t, tiempos, opc, s, n, cantidad, res;
+    int demandas[5], tiempo[5], recursos, recursos2, recursos3, recursos4, tiempoc, op, tr1, tr2, tr3, tr4, t, tiempos, opc,opc2, s, n, cantidad, res;
+    printf("Bienvenido\n");
     do
     {
         menu2(opc);
@@ -37,22 +38,21 @@ int main(int argc, char *argv[])
                     do
                     {
                         menu(opc);
-                        scanf("%d", &opc);
-                        switch (opc)
+                        scanf("%d", &opc2);
+                        switch (opc2)
                         {
                         case 1:
-                            tiempocliente(&t,&s);
+                            tiempocliente(&t, &s);
                             comprobar(&recursos, &recursos2, &recursos3, &recursos4, &tr1, &tr2, &tr3, &tr4, &n);
                             printf("Valor de s: %d, Valor de n: %d\n", s, n);
                             if (s == 1 && n == 4)
                             {
                                 printf("si se puede realizar el pedido ya que existe suficiente demanda y se puede cumplir en el tiempo establecido\n");
                                 resta(&recursos, &recursos2, &recursos3, &recursos4, &tr1, &tr2, &tr3, &tr4);
-                                
                             }
                             else
                             {
-                                printf("no se puede realizar el pedido\n");
+                                printf("no se puede realizar el pedido recursos(n) o tiempo(s) insufucientes\n");
                             }
 
                             break;
@@ -68,28 +68,30 @@ int main(int argc, char *argv[])
                             printf("el total de altavoces que necesita es de %d\n", tr4);
                             break;
                         case 3:
-                            eliminar(productos, demandas, tiempo);
-                            break;
-                        case 4:
                             printf("el stock de chips actual es del %d\n", recursos);
                             printf("el stock de pantallas actuales es de %d\n", recursos2);
                             printf("el stock de microfonos actuales es de %d\n", recursos3);
                             printf("el stock de altavoces actuales es de %d\n", recursos4);
                             break;
-                        case 5:
+                        case 4:
                             agregar(op, cantidad, &recursos, &recursos2, &recursos3, &recursos4);
                             break;
                         default:
                             break;
                         }
-                    } while (opc != 6);
+                    } while (opc2 != 5);
                 }
 
             } while (res == 1);
+            break;
+        case 4:
+            eliminar(productos, demandas, tiempo);
+            break;
         default:
             break;
         }
-    } while (opc != 4);
+    } while (opc != 5);
+    printf("gracias por usar el programa\n");
 
     return 0;
 }
