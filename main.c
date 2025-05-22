@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
             producto(productos, tiempo);
             break;
         case 2:
-            ingresor(recursos, recursos2, recursos3, recursos4, productos);
+            ingresor(&recursos, &recursos2, &recursos3, &recursos4, productos);
             break;
         case 3:
             do
