@@ -11,4 +11,4 @@ void eliminar(char productos[][30], int demanda[5], int tiempo[5]);
 int menu2(int opc);
 int ingresor(int *recursos, int *recursos2, int *recursos3, int *recursos4,char productos[][30]);
 int demanda( int demanda[5]);
-int tiempocliente(int tiempoc, int *t, int *s);
+int tiempocliente( int *t, int *s);
